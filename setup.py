@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="tail-cli",
-    version="1.0",
+    version="1.0.1",
     packages=find_packages(),  # автоматично знайде папку tail_cli
     include_package_data=True,
     install_requires=[
