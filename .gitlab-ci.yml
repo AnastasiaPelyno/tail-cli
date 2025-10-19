@@ -24,5 +24,6 @@ deploy:
     - twine upload --repository-url https://gitlab.com/api/v4/projects/75437263/packages/pypi dist/* -u $PYPI_USERNAME -p $PYPI_PASSWORD
   only:
     - main
+    
 
 

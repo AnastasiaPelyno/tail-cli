@@ -60,7 +60,7 @@ def tail(file, lines, bytes, follow, quiet, verbose, color, reverse, skip_empty,
 
         if header and not quiet:
             click.echo(f"==> {file} <==")
-
+            
         for line in lines_data:
             if isinstance(line, (bytes, bytearray)):
                 text = line.decode(errors='ignore')
