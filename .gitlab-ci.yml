@@ -1,0 +1,22 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist bdist_wheel
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Uploading to GitLab package registry..."
+  only:
+    - main
