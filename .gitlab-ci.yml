@@ -21,7 +21,7 @@ deploy:
   script:
     - echo "🚀 Публікація пакета в GitLab Package Registry..."
     - pip install --upgrade twine
-    - twine upload --repository-url https://gitlab.com/api/v4/projects/75437263/packages/pypi dist/* -u gitlab-ci-token -p $CI_JOB_TOKEN
+    - twine upload --repository-url https://gitlab.com/api/v4/projects/75437263/packages/pypi dist/* -u tail-cli-ci-token -p $GITLAB_TOKEN
   only:
     - main
 
