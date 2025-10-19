@@ -22,3 +22,5 @@ deploy:
     - echo "✅ Build completed successfully!"
   only:
     - main
+
+
