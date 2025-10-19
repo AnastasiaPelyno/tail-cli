@@ -42,7 +42,7 @@ def read_last_lines(file_path, num_lines=None, num_bytes=None):
 @click.option('-r', '--reverse', is_flag=True, help='Виводити у зворотному порядку.')
 @click.option('-s', '--skip-empty', is_flag=True, help='Пропускати порожні рядки.')
 @click.option('-H', '--header', is_flag=True, help='Показувати назву файлу перед рядками.')
-@click.version_option('1.0.2', prog_name='Tail CLI')
+@click.version_option('1.0.3', prog_name='Tail CLI')
 def tail(file, lines, bytes, follow, quiet, verbose, color, reverse, skip_empty, header):
     """Програма tail — виводить останні рядки або байти файлу."""
     try:
