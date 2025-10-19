@@ -6,8 +6,8 @@ build:
   stage: build
   image: python:3.11
   script:
-    - pip install --upgrade pip
-    - pip install -r requirements.txt
+    - pip install --upgrade pip setuptools wheel twine
+    - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - python setup.py sdist bdist_wheel
   artifacts:
     paths:
@@ -19,8 +19,8 @@ deploy:
   stage: deploy
   image: python:3.11
   script:
-    - echo "✅ Build completed successfully!"
+    - echo "🚀 Публікація пакета в GitLab Package Registry..."
+    - pip install --upgrade twine
+    - twine upload --repository-url https://gitlab.com/api/v4/projects/75437263/packages/pypi dist/* -u $PYPI_USERNAME -p $PYPI_PASSWORD
   only:
     - main
-
-
