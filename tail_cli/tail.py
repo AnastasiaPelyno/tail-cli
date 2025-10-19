@@ -62,7 +62,10 @@ def tail(file, lines, bytes, follow, quiet, verbose, color, reverse, skip_empty,
             click.echo(f"==> {file} <==")
 
         for line in lines_data:
-            text = line.decode(errors='ignore') if isinstance(line, bytes) else line
+            if isinstance(line, (bytes, bytearray)):
+                text = line.decode(errors='ignore')
+            else:
+                text = str(line)
             if color:
                 print(Fore.CYAN + text + Style.RESET_ALL)
             else:
