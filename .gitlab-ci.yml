@@ -1,16 +1,24 @@
 stages:
-  - test
   - build
   - deploy
 
 build:
   stage: build
+  image: python:3.11
   script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
     - python setup.py sdist bdist_wheel
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - main
 
 deploy:
   stage: deploy
+  image: python:3.11
   script:
-    - echo "Uploading to GitLab package registry..."
+    - echo "✅ Build completed successfully!"
   only:
     - main
