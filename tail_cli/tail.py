@@ -34,7 +34,7 @@ def read_last_lines(file_path, num_lines=None, num_bytes=None):
 @click.command()
 @click.argument('file', type=click.Path(exists=True))
 @click.option('-n', '--lines', default=10, type=int, help='Кількість рядків для показу.')
-@click.option('-c', '--bytes', default=None, type=int, help='Кількість байтів для показу.')
+@click.option('-c', '--bytes', 'num_bytes', default=None, type=int, help='Кількість байтів для показу.')
 @click.option('-f', '--follow', is_flag=True, help='Слідкувати за змінами файлу (як tail -f).')
 @click.option('-q', '--quiet', '--silent', is_flag=True, help='Не показувати заголовки файлів.')
 @click.option('-v', '--verbose', is_flag=True, help='Показувати більше інформації при виконанні.')
@@ -42,15 +42,15 @@ def read_last_lines(file_path, num_lines=None, num_bytes=None):
 @click.option('-r', '--reverse', is_flag=True, help='Виводити у зворотному порядку.')
 @click.option('-s', '--skip-empty', is_flag=True, help='Пропускати порожні рядки.')
 @click.option('-H', '--header', is_flag=True, help='Показувати назву файлу перед рядками.')
-@click.version_option('1.0.3', prog_name='Tail CLI')
+@click.version_option('1.0.4', prog_name='Tail CLI')
 def tail(file, lines, bytes, follow, quiet, verbose, color, reverse, skip_empty, header):
     """Програма tail — виводить останні рядки або байти файлу."""
     try:
         if verbose:
             click.echo(f"Файл: {file}")
-            click.echo(f"Опції: lines={lines}, bytes={bytes}, follow={follow}, reverse={reverse}")
+            click.echo(f"Опції: lines={lines}, bytes={num_bytes}, follow={follow}, reverse={reverse}")
 
-        lines_data = read_last_lines(file, num_lines=lines, num_bytes=bytes)
+        lines_data = read_last_lines(file, num_lines=lines, num_bytes=num_bytes)
 
         if skip_empty:
             lines_data = [l for l in lines_data if l.strip()]
